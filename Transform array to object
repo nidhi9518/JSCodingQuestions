@@ -1,0 +1,30 @@
+var InputArr = [{ p: 4 }, { p: 2 }, { p: 9 }, { p: 6 }];
+var outputArr = [{ p: 2 }, {}, { p: 4 }, {}, { p: 6 }, {}, {}, { p: 9 }]
+
+
+function sort(arr) {
+    let res = [];
+    let sortedArr = arr.toSorted((a, b) => a.p - b.p);
+
+    for (let i = 0; i < sortedArr.length; i++) {
+        res.push(sortedArr[i]);
+
+        console.log(sortedArr[i + 1])
+        if (sortedArr[i + 1] && Object.keys(sortedArr[i + 1]).length > 0) {
+            if (sortedArr[i + 1].p - sortedArr[i].p === 0 || sortedArr[i + 1].p - sortedArr[i].p === 1) {
+                continue;
+            } else {
+                let diff = sortedArr[i + 1].p - sortedArr[i].p;
+                for (let j = 0; j < diff - 1; j++) {
+                    res.push({});
+                }
+            }
+        }
+
+    }
+
+    return res;
+
+}
+
+console.log(sort(InputArr));
